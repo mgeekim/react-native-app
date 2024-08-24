@@ -5,7 +5,8 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import React, {useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   Button,
@@ -19,6 +20,7 @@ import {
   View,
 } from 'react-native';
 
+import AuthStackNavigator from './src/navigation/AuthStackNavigator';
 
 function App(): JSX.Element {
   const [name, setName] = useState('');
@@ -29,21 +31,15 @@ function App(): JSX.Element {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Text>이름</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={handleChangeInput} />
-      </View>
-    </SafeAreaView>
-  )
+    <NavigationContainer>
+      <AuthStackNavigator></AuthStackNavigator>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
+  container: {
+    flex: 1,
   },
   input: {
     flex: 1,
@@ -53,12 +49,12 @@ const styles = StyleSheet.create({
     width: 100,
   },
   inputContainer: {
-    flex:1,
+    flex: 1,
     backgroundColor: 'red',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-  }
+  },
 });
 
 export default App;
