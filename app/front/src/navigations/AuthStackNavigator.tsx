@@ -5,7 +5,7 @@ import AuthHomScreen from '../screens/AuthHomScreen';
 import LoginScreen from '../screens/LoginScreen';
 import {authNavigations} from '../constants';
 
-type AuthStackParamList = {
+export type AuthStackParamList = {
   [authNavigations.AUTH_HOME]: undefined;
   [authNavigations.LOGIN]: undefined;
 };
