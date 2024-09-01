@@ -19,6 +19,11 @@ function AuthHomScreen({navigation}: AuthHomeScreenProps) {
           onPress={() => {
             navigation.navigate(authNavigations.LOGIN);
           }}></Button>
+        <Button
+          title="회원가입으로 이동"
+          onPress={() => {
+            navigation.navigate(authNavigations.SIGNUP);
+          }}></Button>
       </View>
     </SafeAreaView>
   );
