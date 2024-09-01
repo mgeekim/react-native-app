@@ -17,16 +17,16 @@ function AuthHomScreen({navigation}: AuthHomeScreenProps) {
       <View>
         <CustomBotton
           label="로그인하기"
-          // onPress={() => {
-          //   navigation.navigate(authNavigations.LOGIN);
-          // }}>
+          onPress={() => {
+            navigation.navigate(authNavigations.LOGIN);
+          }}
         />
         <CustomBotton
           label="회원가입하기"
           variant="outlined"
-          // onPress={() => {
-          //   navigation.navigate(authNavigations.SIGNUP);
-          // }}>
+          onPress={() => {
+            navigation.navigate(authNavigations.SIGNUP);
+          }}
         />
       </View>
     </SafeAreaView>

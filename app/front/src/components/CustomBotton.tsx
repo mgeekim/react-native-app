@@ -1,7 +1,7 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, PressableProps} from 'react-native';
 
-interface CustomBottonProps {
+interface CustomBottonProps extends PressableProps {
   label: string;
   variant?: 'filled' | 'outlined';
   size?: 'large' | 'medium';
@@ -11,9 +11,11 @@ function CustomBotton({
   label,
   variant = 'filled',
   size = 'large',
+  ...props
 }: CustomBottonProps) {
   return (
-    <Pressable style={[styles.container, styles[variant], styles[size]]}>
+    <Pressable
+      style={[styles.container, styles[variant], styles[size], {...props}]}>
       <Text style={[styles.text, styles[`${variant}Text`]]}>{label}</Text>
     </Pressable>
   );
