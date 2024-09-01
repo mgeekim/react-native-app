@@ -1,11 +1,19 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, PressableProps} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  PressableProps,
+  Dimensions,
+} from 'react-native';
 
 interface CustomBottonProps extends PressableProps {
   label: string;
   variant?: 'filled' | 'outlined';
   size?: 'large' | 'medium';
 }
+
+const deviceHeight = Dimensions.get('screen').height;
 
 function CustomBotton({
   label,
@@ -35,13 +43,13 @@ const styles = StyleSheet.create({
   },
   large: {
     width: '100%',
-    paddingVertical: 15,
+    paddingVertical: deviceHeight > 700 ? 15 : 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
   medium: {
     width: '50%',
-    paddingVertical: 12,
+    paddingVertical: deviceHeight > 700 ? 12 : 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
