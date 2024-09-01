@@ -11,6 +11,7 @@ interface CustomBottonProps extends PressableProps {
   label: string;
   variant?: 'filled' | 'outlined';
   size?: 'large' | 'medium';
+  inValid?: boolean;
 }
 
 const deviceHeight = Dimensions.get('screen').height;
@@ -19,11 +20,19 @@ function CustomBotton({
   label,
   variant = 'filled',
   size = 'large',
+  inValid = false,
   ...props
 }: CustomBottonProps) {
   return (
     <Pressable
-      style={[styles.container, styles[variant], styles[size], {...props}]}>
+      disabled={inValid}
+      style={[
+        styles.container,
+        styles[variant],
+        styles[size],
+        inValid && styles.inValid,
+      ]}
+      {...props}>
       <Text style={[styles.text, styles[`${variant}Text`]]}>{label}</Text>
     </Pressable>
   );
@@ -33,6 +42,9 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 3,
     justifyContent: 'center',
+  },
+  inValid: {
+    opacity: 0.5,
   },
   filled: {
     backgroundColor: '#C63B64',
