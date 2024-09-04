@@ -13,11 +13,17 @@ import {colors} from '../constants';
 interface InputFiledProps extends TextInputProps {
   disabled?: boolean;
   error?: string;
+  touched?: boolean;
 }
 
 const deviceHeight = Dimensions.get('screen').height;
 
-function InputFiled({disabled = false, error, ...props}: InputFiledProps) {
+function InputFiled({
+  disabled = false,
+  error,
+  touched,
+  ...props
+}: InputFiledProps) {
   const innerRef = useRef<TextInput | null>(null);
 
   const handlePressInput = () => innerRef.current?.focus();
@@ -28,7 +34,7 @@ function InputFiled({disabled = false, error, ...props}: InputFiledProps) {
         style={[
           styles.container,
           disabled && styles.disabled,
-          Boolean(error) && styles.inputError,
+          touched && Boolean(error) && styles.inputError,
         ]}>
         <TextInput
           ref={innerRef}
@@ -40,7 +46,7 @@ function InputFiled({disabled = false, error, ...props}: InputFiledProps) {
           autoCorrect={false}
           {...props}
         />
-        {Boolean(error) && <Text style={styles.error}>{error}</Text>}
+        {touched && Boolean(error) && <Text style={styles.error}>{error}</Text>}
       </View>
     </Pressable>
   );
