@@ -5,6 +5,7 @@ import {
   Text,
   PressableProps,
   Dimensions,
+  View,
 } from 'react-native';
 import {colors} from '../constants';
 
@@ -34,7 +35,9 @@ function CustomBotton({
         inValid && styles.inValid,
       ]}
       {...props}>
-      <Text style={[styles.text, styles[`${variant}Text`]]}>{label}</Text>
+      <View style={styles[size]}>
+        <Text style={[styles.text, styles[`${variant}Text`]]}>{label}</Text>
+      </View>
     </Pressable>
   );
 }
@@ -43,6 +46,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 3,
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   inValid: {
     opacity: 0.5,
@@ -52,27 +56,29 @@ const styles = StyleSheet.create({
   },
   outlined: {
     borderColor: colors.PINK_700,
-    borderWith: 1,
+    borderWidth: 1,
   },
   filledPressed: {
     backgroundColor: colors.PINK_500,
   },
   outlinedPressed: {
     borderColor: colors.PINK_700,
-    borderWith: 1,
+    borderWidth: 1,
     opacity: 0.5,
   },
   large: {
     width: '100%',
-    paddingVertical: deviceHeight > 700 ? 15 : 10,
+    paddingVertical: deviceHeight > 700 ? 10 : 8,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   medium: {
     width: '50%',
     paddingVertical: deviceHeight > 700 ? 12 : 8,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   text: {
     fontSize: 16,
