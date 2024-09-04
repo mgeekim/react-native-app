@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   Dimensions,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -17,24 +18,31 @@ interface InputFiledProps extends TextInputProps {
 const deviceHeight = Dimensions.get('screen').height;
 
 function InputFiled({disabled = false, error, ...props}: InputFiledProps) {
+  const innerRef = useRef<TextInput | null>(null);
+
+  const handlePressInput = () => innerRef.current?.focus();
+
   return (
-    <View
-      style={[
-        styles.container,
-        disabled && styles.disabled,
-        Boolean(error) && styles.inputError,
-      ]}>
-      <TextInput
-        editable={!disabled}
-        placeholderTextColor={colors.GRAY_500}
-        style={styles.input}
-        autoCapitalize="none"
-        spellCheck={false}
-        autoCorrect={false}
-        {...props}
-      />
-      {Boolean(error) && <Text style={styles.error}>{error}</Text>}
-    </View>
+    <Pressable onPress={handlePressInput}>
+      <View
+        style={[
+          styles.container,
+          disabled && styles.disabled,
+          Boolean(error) && styles.inputError,
+        ]}>
+        <TextInput
+          ref={innerRef}
+          editable={!disabled}
+          placeholderTextColor={colors.GRAY_500}
+          style={styles.input}
+          autoCapitalize="none"
+          spellCheck={false}
+          autoCorrect={false}
+          {...props}
+        />
+        {Boolean(error) && <Text style={styles.error}>{error}</Text>}
+      </View>
+    </Pressable>
   );
 }
 
