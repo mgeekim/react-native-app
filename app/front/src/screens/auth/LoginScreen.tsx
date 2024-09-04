@@ -1,14 +1,26 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import InputFiled from '../../components/InputFiled';
 
 function LoginScreen() {
   return (
-    <View>
-      <Text>로그인 스크린</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inputContainer}>
+        <InputFiled placeholder="이메일" />
+        <InputFiled placeholder="비밀번호" />
+      </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: 30,
+  },
+  inputContainer: {
+    gap: 20,
+  },
+});
 
 export default LoginScreen;
