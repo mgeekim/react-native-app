@@ -6,8 +6,17 @@ function LoginScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
-        <InputFiled placeholder="이메일" error={'이메일을 입력하세요.'} />
-        <InputFiled placeholder="비밀번호" error={'비밀번호를 입력하세요'} />
+        <InputFiled
+          placeholder="이메일"
+          error={'이메일을 입력하세요.'}
+          inputMode="email"
+        />
+        <InputFiled
+          placeholder="비밀번호"
+          error={'비밀번호를 입력하세요'}
+          inputMode="numeric"
+          secureTextEntry
+        />
       </View>
     </SafeAreaView>
   );
