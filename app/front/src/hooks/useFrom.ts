@@ -1,12 +1,17 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 interface UseFromProps<T> {
   initialValue: T;
+  validate: (values: T) => Record<keyof T, string>;
 }
 
-function useFrom<T>({initialValue}: UseFromProps<T>) {
+function useFrom<T>({initialValue, validate}: UseFromProps<T>) {
   const [values, setValues] = useState(initialValue);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [errors, setErros] = useState<Record<string, string>>({});
+
+  {
+  }
 
   const handleChangeText = (name: keyof T, text: string) => {
     setValues({
@@ -30,7 +35,12 @@ function useFrom<T>({initialValue}: UseFromProps<T>) {
     return {value, onChangeText, onBlur};
   };
 
-  return {values, touched, getTextInputProps};
+  useEffect(() => {
+    const newErrors = validate(values);
+    setErros(newErrors);
+  }, [validate, values]);
+
+  return {values, errors, touched, getTextInputProps};
 }
 
 export default useFrom;
