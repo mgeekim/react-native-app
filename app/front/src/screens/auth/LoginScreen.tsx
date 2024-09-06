@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import InputFiled from '../../components/InputFiled';
+import CustomBotton from '../../components/CustomBotton';
 
 function LoginScreen() {
   // const [email, setEmail] = useState('');
@@ -38,6 +39,10 @@ function LoginScreen() {
     });
   };
 
+  const handleSubmit = () => {
+    console.log('values=', values);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
@@ -61,6 +66,12 @@ function LoginScreen() {
           onBlur={() => handleBlur('password')}
         />
       </View>
+      <CustomBotton
+        label="로그인"
+        variant="filled"
+        size="large"
+        onPress={handleSubmit}
+      />
     </SafeAreaView>
   );
 }
@@ -72,6 +83,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     gap: 20,
+    marginBottom: 30,
   },
 });
 
